@@ -2,6 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const ejs = require('ejs');
 const path = require('path');
+const PORT = process.env.PORT || 8080
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
@@ -71,6 +72,7 @@ app.post('/upload', (req, res) => {
   });
 });
 
-const port = 3000;
+app.listen(PORT, ()=>{
+  console.log(`${PORT}`)
+})
 
-app.listen(port, () => console.log(`port ${port}`));
