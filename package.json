@@ -1,10 +1,10 @@
 {
   "name": "webtesting",
   "version": "1.0.0",
-  "description": "testingthndocr",
+  "description": "testing",
   "main": "app.js",
   "scripts": {
-    "start": "npm start"
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
