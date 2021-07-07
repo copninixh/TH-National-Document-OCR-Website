@@ -1,0 +1,367 @@
+<<<<<<< HEAD
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH National Document OCR (THND OCR) | โครงการพัฒนาการอ่านเอกสารราชการไทยด้วย OCR </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet" />
+ 
+    <link
+    href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+    rel="stylesheet"
+/>
+<script src="https://unpkg.com/tesseract.js@2.0.0-beta.1/dist/tesseract.min.js"></script>
+
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+  <body>
+    <% include component/navbar %>
+
+
+<img src="img/banner.jpg" class="img-fluid w-100 mt-5"  alt="">
+  
+  <div class="container-fluid" style="max-width: 1420px;">
+      <div class="row">
+        <div class="col-xl-2 mt-5">
+            <% include component/menu %>
+            
+        </div>
+        <div class="col-xl-10 mt-5">
+            <div class="container">
+                <h3 align="center" style="color:#4B4279">โครงการพัฒนาการอ่านเอกสารราชการด้วย Optical Character Recognition</h3>
+                <div class="container mt-4" style="
+                    background: #F7FAFE;
+                    border: 1px solid #DCE6EF;
+                    border-radius: 15px;"
+                >
+                    <div class="container pt-5 pb-5">
+                        <div class="row">
+                            <div class="col-xl-4">
+                              
+                              
+                                <div class="container pt-4 pb-4" style="
+                                background: #FFFFFF 0% 0% no-repeat padding-box;
+                                box-shadow: 0px 6px 26px #EFEFF7;
+                                border-radius: 10px;
+                                ">
+                                    <h5 align="center" class="title mb-3">อัพโหลดรูปภาพ</h5>
+
+                                    <form action="/upload" method="POST" enctype="multipart/form-data">
+                                     
+                                          <input name="myImage" class="custom-file-input" type="file" >
+                                      
+                                      
+                                      
+
+                                      <div class="d-grid gap-2">
+                                          <button type="submit" class="btn btn-primary mt-1" style="background: #685FFF;">วิเคราะห์</button>
+                                      </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-xl-8">
+                                <div class="container pt-4 pb-4" style="
+                                background: #FFFFFF 0% 0% no-repeat padding-box;
+                                box-shadow: 0px 6px 26px #EFEFF7;
+                                border-radius: 10px;
+                                ">
+
+                            
+                               
+                                    <h5 class="title">สถานะการอัพโหลด : <%= typeof msg != 'undefined' ? msg : '' %></h5>
+                                    <div class="container" style="border:1px solid #DCE6EF;border-radius: 3px;">
+                                   
+                                    <% if (typeof file == 'undefined'){ %>
+                                        <img src="01.jpg" class="img-fluid w-100 mt-3">
+                                        <div id="message" class="text-center">THND OCR Loading กำลังประมวลผล..</div>
+                                        <script>
+                                     
+                                            const { createWorker } = Tesseract;
+                                      
+                                            const worker = createWorker({
+                                              langPath: '..',
+                                              gzip: false,
+                                              logger: m => console.log(m)
+                                            });
+                                      
+                                            (async () => {
+                                              await worker.load();
+                                              await worker.loadLanguage('thnd');
+                                              await worker.initialize('thnd');
+                                              
+                                              const { data: { text } } = await worker.recognize("01.jpg");
+                                              document.getElementById('message').innerHTML = text;
+                                              await worker.terminate();
+                                            })();
+      
+                                          </script>
+      
+                                    <% } else{ %> 
+                                        <img src="<%= typeof file != 'undefined' ? file : '' %>" class="img-fluid w-100 mt-3">
+                                        <div id="message" class="text-center">THND OCR Loading กำลังประมวลผล..</div>
+                                        <script>
+                                     
+                                            const { createWorker } = Tesseract;
+                                      
+                                            const worker = createWorker({
+                                              langPath: '..',
+                                              gzip: false,
+                                              logger: m => console.log(m)
+                                            });
+                                      
+                                            (async () => {
+                                              await worker.load();
+                                              await worker.loadLanguage('thnd');
+                                              await worker.initialize('thnd');
+                                              
+                                              const { data: { text } } = await worker.recognize("<%= typeof file != 'undefined' ? file : '' %>");
+                                              document.getElementById('message').innerHTML = text;
+                                              await worker.terminate();
+                                            })();
+      
+                                          </script>
+      
+                                    <% } %>
+                                  
+                                    </div>
+                                </div>
+
+                               
+                               
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div> 
+            
+        </div>
+      </div>
+      
+  </div>
+
+
+  <% include component/footer %>
+
+<script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
+<!--script>
+ 
+FilePond.registerPlugin(
+	
+	// encodes the file as base64 data
+  FilePondPluginFileEncode,
+	
+	// validates the size of the file
+	FilePondPluginFileValidateSize,
+	
+	// corrects mobile image orientation
+	FilePondPluginImageExifOrientation,
+	
+	// previews dropped images
+  FilePondPluginImagePreview
+);
+    // Get a reference to the file input element
+    const inputElement = document.querySelector('input[type="file"]');
+
+// Create a FilePond instance
+const pond = FilePond.create(inputElement,{
+    labelIdle:'<p align="center" style="font-size:14px"><img src="img/upload.png" width="20%" class="img-fluid"><br>Drag and drop here<br>or<br><span class="filepond--label-action">Browse</span></p>',
+    
+});
+
+// Select the file input and use create() to turn it into a pond
+FilePond.create(
+	document.querySelector('input')
+);
+</script-->
+
+   
+  </body>
+</html>
+
+=======
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH National Document OCR (THND OCR) | โครงการพัฒนาการอ่านเอกสารราชการไทยด้วย OCR </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet" />
+    <link
+    href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+    rel="stylesheet"
+/>
+<script src="https://unpkg.com/tesseract.js@2.0.0-beta.1/dist/tesseract.min.js"></script>
+
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+  <body>
+      <!-- Navbar -->
+<nav class="navbar navbar-light bg-light fixed-top">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="#"><h4 style="color: #4B4279;padding-left: 50px;margin:0">THND OCR</h4></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" style="border-color: rgb(255, 255, 255)!important;">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+  </div>
+</nav>
+
+<img src="img/banner.jpg" class="img-fluid w-100 mt-5"  alt="">
+  
+  <div class="container-fluid" style="max-width: 1420px;">
+      <div class="row">
+        <div class="col-xl-2 mt-5">
+            <div class="list-group list-group-flush ">
+                <a href="/" class="mt-3 list-group-item list-group-item-action turn"><i class="fa fa-home"></i>&nbsp;&nbsp;&nbsp;หน้าแรก</a>
+                <a href="https://github.com/copninich/TH-National-Document-OCR" target="_blank" class="mt-2 list-group-item list-group-item-action not-turn">&nbsp;<i class="fab fa-github"></i></i>&nbsp;&nbsp;&nbsp;Github</a>
+                <a href="https://copninich.medium.com/thnd-ocr-the-series-version-%E0%B8%A1%E0%B9%89%E0%B8%A7%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B8%A2%E0%B8%A7%E0%B8%88%E0%B8%9A%E0%B8%9A%E0%B8%9A%E0%B8%9A-%E0%B8%AD%E0%B8%B0%E0%B9%80%E0%B8%AB%E0%B9%89%E0%B8%A2%E0%B8%A2-5a673cc8a686" class="mt-2 list-group-item list-group-item-action not-turn" target="_blank">&nbsp;<i class="fab fa-medium"></i>&nbsp;&nbsp;&nbsp;Medium Blog</a>
+                <a href="https://deepmoe-my.sharepoint.com/:p:/g/personal/kampanart_ch_obec_moe_go_th/EdLVgy25NMJMgI8a0XIkKZoBmFOizLdVywIc27HBm8-phA?e=rxKtDc" class="mt-2 list-group-item list-group-item-action not-turn" target="_blank">&nbsp;<i class="fas fa-file-powerpoint"></i>&nbsp;&nbsp;&nbsp;Presentation</a>
+                <a href="report_performace_final.csv" class="mt-2 mb-3 list-group-item list-group-item-action not-turn">&nbsp;<i class="fas fa-info-circle"></i>&nbsp;&nbsp;&nbsp;Benchmark Result</a>
+          </div>
+        </div>
+        <div class="col-xl-10 mt-5">
+            <div class="container">
+                <h3 align="center" style="color:#4B4279">โครงการพัฒนาการอ่านเอกสารราชการด้วย Optical Character Recognition</h3>
+                <div class="container mt-4" style="
+                    background: #F7FAFE;
+                    border: 1px solid #DCE6EF;
+                    border-radius: 15px;"
+                >
+                    <div class="container pt-5 pb-5">
+                        <div class="row">
+                            <div class="col-xl-4">
+                              
+                              
+                                <div class="container pt-4 pb-4" style="
+                                background: #FFFFFF 0% 0% no-repeat padding-box;
+                                box-shadow: 0px 6px 26px #EFEFF7;
+                                border-radius: 10px;
+                                ">
+                                    <h5 align="center" class="title mb-3">อัพโหลดรูปภาพ</h5>
+
+                                    <form action="/upload" method="POST" enctype="multipart/form-data">
+                                     
+                                          <input name="myImage" class="custom-file-input" type="file" required>
+                                      
+                                      
+                                      
+
+                                      <div class="d-grid gap-2">
+                                          <button type="submit" class="btn btn-primary mt-1" style="background: #685FFF;">วิเคราะห์</button>
+                                      </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-xl-8">
+                                <div class="container pt-4 pb-4" style="
+                                background: #FFFFFF 0% 0% no-repeat padding-box;
+                                box-shadow: 0px 6px 26px #EFEFF7;
+                                border-radius: 10px;
+                                ">
+                                    <h5 class="title">ผลลัพธ์การวิเคราะห์ : <%= typeof msg != 'undefined' ? msg : '' %></h5>
+                                    <div class="container" style="border:1px solid #DCE6EF;border-radius: 3px;">
+                                    <img src="<%= typeof file != 'undefined' ? file : '' %>" class="img-fluid w-100 mt-3">
+                                    <div id="message" class="text-center">THND OCR Loading กำลังประมวลผล..</div>
+                                    <script>
+                                      const { createWorker } = Tesseract;
+                                
+                                      const worker = createWorker({
+                                        langPath: '..',
+                                        gzip: false,
+                                        logger: m => console.log(m)
+                                      });
+                                
+                                      (async () => {
+                                        await worker.load();
+                                        await worker.loadLanguage('thnd');
+                                        await worker.initialize('thnd');
+                                        const { data: { text } } = await worker.recognize("<%= typeof file != 'undefined' ? file : '' %>");
+                                        document.getElementById('message').innerHTML = text;
+                                        await worker.terminate();
+                                      })();
+                                    </script>
+
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div>      
+        </div>
+      </div>
+      
+  </div>
+
+
+<footer class="pt-3 pb-3 mt-5 " style="background: #7A6FB0;">
+    <div class="container-fluid" style="max-width: 1800px;">
+        <div class="row">
+            <div class="col-xl-6">
+                <p style="margin:0;font-weight: bold;color:white"><img src="img/logo2.png" class="img-fluid" style="max-width: 50px;">&nbsp;&nbsp;&nbsp;AI Builders</p>
+            </div>
+            <div class="col-xl-6">
+                <p class="pt-3" style="color:white;margin:0" align="right">© 2021 TH National Document OCR (THND OCR) Copninich Kampanart Chaimooltan</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
+<!--script>
+ 
+FilePond.registerPlugin(
+	
+	// encodes the file as base64 data
+  FilePondPluginFileEncode,
+	
+	// validates the size of the file
+	FilePondPluginFileValidateSize,
+	
+	// corrects mobile image orientation
+	FilePondPluginImageExifOrientation,
+	
+	// previews dropped images
+  FilePondPluginImagePreview
+);
+    // Get a reference to the file input element
+    const inputElement = document.querySelector('input[type="file"]');
+
+// Create a FilePond instance
+const pond = FilePond.create(inputElement,{
+    labelIdle:'<p align="center" style="font-size:14px"><img src="img/upload.png" width="20%" class="img-fluid"><br>Drag and drop here<br>or<br><span class="filepond--label-action">Browse</span></p>',
+    
+});
+
+// Select the file input and use create() to turn it into a pond
+FilePond.create(
+	document.querySelector('input')
+);
+</script-->
+
+   
+  </body>
+</html>
+
+>>>>>>> d0a4ca4bd9f5bbca7fc15a72bbffa97f5e174842

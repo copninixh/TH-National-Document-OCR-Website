@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH National Document OCR (THND OCR) | โครงการพัฒนาการอ่านเอกสารราชการไทยด้วย OCR </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet" />
+    <link
+    href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+    rel="stylesheet"
+/>
+<script src="https://unpkg.com/tesseract.js@2.0.0-beta.1/dist/tesseract.min.js"></script>
+
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+  <body>
+      <!-- Navbar -->
+      <% include component/navbar %>
+
+<img src="img/banner.jpg" class="img-fluid w-100 mt-5"  alt="">
+  
+  <div class="container-fluid" style="max-width: 1420px;">
+      <div class="row">
+        <div class="col-xl-2 mt-5">
+          <% include component/menu %>
+        </div>
+        <div class="col-xl-10 mt-5">
+            <div class="container">
+                <h3 align="center" style="color:#4B4279">โครงการพัฒนาการอ่านเอกสารราชการด้วย Optical Character Recognition</h3>
+                <p class="text-center mt-3"><img src="img/bar.png" class="img-fluid"/></p>
+            
+                <p align="justify">โครงการพัฒนาการอ่านเอกสารราชการด้วย Optical Character Recognition (OCR) ภายใต้ชื่อ Project
+                    TH National Document OCR (THND OCR) Based on Tesseract เป็นส่วนหนึ่งของการพัฒนาสังคมภาครัฐ ให้สามารถโปร่งใส ตรวตสอบได้ และ เป็นส่วนหนึ่งของการพัฒนาวงการ Open source ของ OCR Thai ให้มี Community ที่ใหญ่ขึ้น ! ภายใต้งาน AI Builders a program for kids who want to build good AI 💕 
+                    โครงการสำหรับน้องๆมัธยมต้น-ปลาย ที่สนใจสร้างผลงานโดยใช้เทคนิคทางด้านวิทยาศาสตร์ข้อมูล (Data Science) และปัญญาประดิษฐ์ (Artificial Intelligence)
+                    โครงการ AI Builders ก่อตั้งขึ้นจากความร่วมมือระหว่าง VISTEC / AI Research และ Central Tech เพื่อพัฒนาองค์ความรู้ทางด้านวิทยาศาสตร์ข้อมูล (Data Science) และปัญญาประดิษฐ์ (Artificial Intelligence / AI) ให้กับน้องๆระดับมัธยมต้น-ปลาย ที่สนใจอยากเรียนรู้และพัฒนาโครงงานที่ใช้ทักษะในด้านนี้เพื่อประยุกต์ใช้จริงในชีวิตประจำวัน</p>
+                
+            </div>      
+        </div>
+      </div>
+      
+  </div>
+
+
+  <% include component/footer %>
+
+
+
+<script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
+<!--script>
+ 
+FilePond.registerPlugin(
+	
+	// encodes the file as base64 data
+  FilePondPluginFileEncode,
+	
+	// validates the size of the file
+	FilePondPluginFileValidateSize,
+	
+	// corrects mobile image orientation
+	FilePondPluginImageExifOrientation,
+	
+	// previews dropped images
+  FilePondPluginImagePreview
+);
+    // Get a reference to the file input element
+    const inputElement = document.querySelector('input[type="file"]');
+
+// Create a FilePond instance
+const pond = FilePond.create(inputElement,{
+    labelIdle:'<p align="center" style="font-size:14px"><img src="img/upload.png" width="20%" class="img-fluid"><br>Drag and drop here<br>or<br><span class="filepond--label-action">Browse</span></p>',
+    
+});
+
+// Select the file input and use create() to turn it into a pond
+FilePond.create(
+	document.querySelector('input')
+);
+</script-->
+
+   
+  </body>
+</html>
+

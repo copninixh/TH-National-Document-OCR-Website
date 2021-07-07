@@ -1,0 +1,36 @@
+<<<<<<< HEAD
+{
+  "name": "nodeuploads",
+  "version": "1.0.0",
+  "description": "Example for image uploading in Node",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dark-mode-switch": "^1.0.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "multer": "^1.3.0"
+  }
+}
+=======
+{
+  "name": "nodeuploads",
+  "version": "1.0.0",
+  "description": "Example for image uploading in Node",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "multer": "^1.3.0"
+  }
+}
+>>>>>>> d0a4ca4bd9f5bbca7fc15a72bbffa97f5e174842

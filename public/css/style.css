@@ -1,0 +1,73 @@
+@font-face {
+    font-family: IBMPlex;
+    src:url("../fonts/IBMPlexSansThai-Regular.otf");
+    font-weight: normal;
+}
+@font-face {
+    font-family: IBMPlex;
+    src:url("../fonts/IBMPlexSansThai-Bold.otf");
+    font-weight: bold;
+}
+*{
+    font-family: IBMPlex;
+}
+.list-group{
+    border: 1px solid #F2F2F2;
+}
+.turn{
+    color: #685FFE;
+    background: #F4F3FF ;
+    box-shadow: -3px 0px 0px 0px #685FFE;
+}
+.turn:hover{
+    color: #685FFE;
+    background: #F4F3FF;
+}
+.not-turn{
+    color: #817C9B;
+}
+.list-group-item{
+    border: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5{
+    font-weight: bold;
+}
+
+.title{
+    color: #685FFF;
+}
+.filepond--root,
+.filepond--root .filepond--drop-label {
+  height: 200px;
+  border-radius: 10px;
+  background: white;
+  border: 1px solid #f2f2f2;
+
+}
+/**
+ * FilePond Custom Styles
+ */
+ .filepond--drop-label {
+	color: #4c4e53;
+}
+
+.filepond--label-action {
+	text-decoration-color: #babdc0;
+}
+
+
+.filepond--item-panel {
+	background-color: #595e68;
+}
+
+.filepond--drip-blob {
+	background-color: #7f8a9a;
+}
+
+
+/**
+ * Page Styles
